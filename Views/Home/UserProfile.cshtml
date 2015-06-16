@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Web_Practice5_Template.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserProfile</title>
+    <link href="dropDown.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/showHide.js" type="text/javascript"></script>
+
+</head>
+<body>
+    
+    <div style="height:260px; width:200px; margin-left:20px;">
+        <img src="~/ProfileImages/@Model.profile" class="img-circle" alt="Cinque Terre" height="220" width="200">
+        <div>
+            <h2 style="font-size:20px; font-family:Nafees; text-align:center;">@(Model.fname + " " + Model.lname)</h2>
+        </div>
+        <div>
+            <!--<label style="margin-left:50px;">Change Picture</label>-->
+            <!--<input type="file" class="btn btn-success" name="picture" style="margin-left:50px;" value="Profile Picture" />-->
+            <button type="button" name="changeProfile" class="btn btn-success" style="margin-left:50px;">@Html.ActionLink("Change Profile", "ChangeProfile", "Home")</button>
+        </div>
+    </div>
+
+    <div style="height:600px; width:310px; float:left; margin-top:100px; margin-left:2%;">
+       @Html.Partial("Sidebar");
+    </div>
+
+
+</body>
+</html>

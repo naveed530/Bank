@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model System.Collections.ArrayList
+@using Web_Practice5_Template.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>myAccounts</title>
+
+    <link href="dropDown.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/showHide.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div>
+        <div class="col-lg-9">
+            <table class="table" style="border:solid; margin-top:20px;">
+                <thead>
+                    <tr class="btn-primary" style="text-align:center">
+                        <th>Account Number</th>
+                        <th>Holder Name</th>
+                        <th>Phone Number</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+
+                @foreach (Account obj in Model)
+                {
+                    <tr>
+                        <td>@obj.AccountNo</td>
+                        <td>@obj.name</td>
+                        <td>@obj.phoneNo</td>
+                        <td>@obj.amount</td>
+                        <td>@obj.accountType</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

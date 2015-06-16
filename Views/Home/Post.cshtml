@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Post</title>
+</head>
+<body>
+    <div>
+        <div class="col-lg-6" style="margin-top:30px; margin-left:300px; background-color:aqua; width:500px; height:470px; border-radius:10px;">
+            <div class="container" style="font-family:Calibri ; color:blue; margin-top:20px; margin-left:90px;">
+                <div class="row">
+                    <div class="col-md-offset-0 col-md-3">
+                        <div class="form-login">
+
+                            <form method="post" action="~/Home/MakeAPost" style="opacity:0.9" enctype="multipart/form-data">
+                                <input type="text" style="opacity:0.9" name="title" class="form-control input-sm chat-input" placeholder="Title" required="required" />
+                                <br />
+
+                                <textarea rows="10" cols="50" style="opacity:0.9" name="description" class="form-control input-sm chat-input" placeholder="Description" required="required"></textarea>
+                                <br />
+
+                                <label>Upload Picture</label>
+                                <input type="file" name="picture" />
+                                <br />
+                                <br />
+
+                                <input class="btn btn-primary" type="submit" value="POST" />
+                            </form>
+
+                            <h3>@ViewBag.Message</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

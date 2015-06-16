@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model System.Collections.ArrayList
+@using Web_Practice5_Template.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchFriends</title>
+    <link rel="stylesheet" href="~/Content/layout.css" type="text/css" media="screen" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="~/Content/bootstrap.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/hideshow.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.tablesorter.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.equalHeight.js"></script>
+</head>
+<body>
+    <div>
+        <div class="col-lg-9">
+            <table class="table" style="border:solid; margin-top:20px;">
+                <thead>
+                    <tr class="btn-primary" style="text-align:center">
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Profile Picture</th>
+                        <th>Add Friend</th>
+                    </tr>
+                </thead>
+
+                @foreach (User obj in Model)
+                {
+                    My_DatabaseEntities ent = new My_DatabaseEntities();
+
+                    User u = (User)Session["user"];
+                    Friend f = new Friend();
+                    Account ac = new Account();
+                    
+                    if (!obj.uname.Equals("admin"))
+                    {
+                        try
+                        {
+                            f = ent.Friends.First(x => x.myId == u.Id && x.friendId == obj.Id);
+                            ac = ent.Accounts.First(x => x.userId == obj.Id);
+                        }catch(Exception e)
+                        {
+                            
+                        }
+                        
+                        if( obj.Id != u.Id && ac != null)
+                        {
+                            <tr>
+                                <td>@(obj.fname + " " + obj.lname)</td>
+                                <td>@obj.email</td>
+                                <td><img src="/ProfileImages/@obj.profile" width="50" height="50" /></td>
+
+                                @if( f.friendId == null && f.myId == null )
+                                {
+                                    <td><a href="/Home/AddFriend/@obj.Id">Add</a></td>
+                                }
+                                else
+                                {
+                                    <td><label>Friend</label></td>
+                                }
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

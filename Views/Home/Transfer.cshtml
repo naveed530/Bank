@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model System.Collections.ArrayList
+@using Web_Practice5_Template.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Transfer</title>
+
+    <link href="dropDown.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/showHide.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div>
+        <div class="col-lg-9">
+            <table class="table" style="border:solid; margin-top:20px;">
+                <thead>
+                    <tr class="btn-primary" style="text-align:center">
+                        <th>Name</th>
+                        <th>Account Number</th>
+                        <th>Profile</th>
+                        <th>Transfer</th>
+                    </tr>
+                </thead>
+
+                @foreach(Friend obj in Model)
+                {
+                    My_DatabaseEntities ent = new My_DatabaseEntities();
+
+                    User usr = (User)Session["user"];
+                    User u = ent.Users.First(x => x.Id == obj.friendId);
+                    Account ac = ent.Accounts.First(x => x.userId == obj.friendId);
+                    
+                    <tr>
+                        <td>@(u.fname + " " + u.lname)</td>
+                        <td>@ac.AccountNo</td>
+                        <td><img width="50" height="50" src="/ProfileImages/@u.profile" /></td>
+                        <td><a href="/Home/TransferCash/@obj.friendId">Transfer</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

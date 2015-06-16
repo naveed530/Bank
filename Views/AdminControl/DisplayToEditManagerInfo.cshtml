@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DisplayToEditManagerInfo</title>
+
+    <link rel="stylesheet" href="~/Content/layout.css" type="text/css" media="screen" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="~/Content/bootstrap.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/hideshow.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.tablesorter.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.equalHeight.js"></script>
+
+</head>
+<body>
+    <div>
+        <div class="col-lg-6" style="margin-top:30px; margin-left:300px; background-color:aqua; width:500px; height:500px; border-radius:10px;">
+            <div class="container" style="font-family:Calibri ; color:blue; margin-top:20px; margin-left:90px;">
+                <div class="row">
+                    <div class="col-md-offset-0 col-md-3">
+                        <div class="form-login">
+
+                            <form method="post" action="~/AdminControl/SaveEditedManagerInfo/@Model.Id" style="opacity:0.9" enctype="multipart/form-data">
+                                <input type="text" style="opacity:0.9" name="name" class="form-control input-sm chat-input" value="@Model.name" />
+                                <br />
+
+                                <input type="text" style="opacity:0.9" name="qualification" class="form-control input-sm chat-input" value="@Model.qualification" />
+                                <br />
+
+                                <input type="text" style="opacity:0.9" name="rank" class="form-control input-sm chat-input" value="@Model.rank" />
+                                <br />
+
+                                <input type="text" style="opacity:0.9" name="contact" class="form-control input-sm chat-input" value="@Model.contact" />
+                                <br />
+
+                                <input type="text" style="opacity:0.9" name="description" class="form-control input-sm chat-input" value="@Model.description" />
+                                <br />
+
+                                <img src="/Managers/@Model.picture" height="100" width="100" />
+                                <br />
+
+                                <label>Change Picture</label>
+                                <input type="file" name="picture" />
+                                <br />
+                                <br />
+
+                                <input class="btn btn-success" type="submit" value="Save Changes" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
