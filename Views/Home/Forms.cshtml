@@ -47,17 +47,18 @@
             });
         });
         */
+        -->
+    <script>
         /*function checkUserAvailability() {
             var email = $("#email").val();
             var uname = $("#uname").val();
 
+           
             $.ajax({
-                url: '/HomeControl/checkAvailablity',
-                contentType: "application/json; charset=utf-8",
-                data: { email: email, username: uname },
-                type: 'GET',
-                dataType: 'html'
-            })
+            type:"POST",
+            url:"home/checkAvailability",
+
+            data: ('email:',email,'')
                 .success(function (result) {
                     $('#Message').html(result);
                 })
@@ -65,14 +66,14 @@
                 .error(function (xhr, status) {
                     $('#Message').html(result);
                 })
-        }*/
-        -->
-
+        }
+        */
+    </script>
 
 </head>
 <body>
     <script type="text/javascript">
-        $(function () {
+    /*    $(function () {
             $('#btnSignUp').click(function () {
                 var email = $('#email').val();
                 var username = $('#uname').val();
@@ -95,6 +96,7 @@
                 })
             })
         });
+        */
     </script>
     <div class="col-lg-12">
         <div class="col-lg-6" style="margin-top:30px; margin-left:30px; background-color:aqua; width:400px; height:300px; border-radius:10px;">
@@ -138,15 +140,19 @@
 
                                 @Html.TextBoxFor(m => m.lname, new { @class = "form-control input-sm chat-input", @placeholder = "Last Name", @required = "required" })
                                 <br />
-                                
-                                @Html.TextBoxFor(m => m.email, new { @class = "form-control input-sm chat-input", @placeholder = "Email", @required = "required", @id = "email"})
+
+                                <input type="text" class="form-control input-sm chat-input" placeholder="Email" id="email" required/>
+                                //@Html.TextBoxFor(m => m.email, new { @class = "form-control input-sm chat-input", @placeholder = "Email", @required = "required", @id = "email"})
                                 <br />
                                 
                                 @Html.TextBoxFor(m => m.uname, new { @class = "form-control input-sm chat-input", @placeholder = "User Name", @required = "required", @id = "uname"})
                                 <br />
                                 
-                                <input type="button" id="btnSignUp" value="Check Availability"/>
+                                <button type="button" class="btn btn-info" onclick="checkUserAvailability()" id="btnSignUp" >Check Availability</button>
+                                <br />
+                                
                                 <p id="Message"></p>
+                                <br />
                                 
                                 @Html.TextBoxFor(m => m.password, new { @class = "form-control input-sm chat-input", @placeholder = "Password", @required = "required", @type = "password" })
                                 <br />
@@ -154,7 +160,7 @@
                                 <label class="checkbox"><input type="checkbox" name="agree">I agree with the terms</label>
                                 <br />
 
-                                <input type="submit" value="Login" />
+                                <input type="submit" value="Sign Up" />
                             }
                             <h4>@ViewBag.SignUpMessage</h4>
                         </div>
